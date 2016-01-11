@@ -17,3 +17,7 @@ func (w *_BrowserWindow) GetWebContents() WebContents {
 func (w *_BrowserWindow) LoadURL(url string, opts *map[string]interface{}) {
 	w.Call("loadURL", url, opts)
 }
+
+func (w *_BrowserWindow) HookWindowMessage(message int, callback func(result ...interface{})) {
+
+}

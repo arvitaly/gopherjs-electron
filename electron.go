@@ -42,7 +42,6 @@ func GetApp() App {
 //	NodeIntegration        bool
 //}
 func NewBrowserWindow(opts *map[string]interface{}) BrowserWindow {
-
-	var bw = jsElectron.Get("BrowserWindow").New(nil)
+	var bw = jsElectron.Get("BrowserWindow").New(opts)
 	return &_BrowserWindow{Object: bw, WebContents: &_WebContents{Object: bw.Get("webContents")}}
 }
