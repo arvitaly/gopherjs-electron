@@ -10,15 +10,16 @@ import (
 
 var bwTest = func() bool {
 	jasmine.Describe("BrowserWindow", func() {
+		var w electron.BrowserWindow
 		jasmine.It("New", func() {
-			var w = electron.NewBrowserWindow(&map[string]interface{}{
+			w = electron.NewBrowserWindow(&map[string]interface{}{
 				"title": "title1",
 			})
 			jasmine.Expect(w.GetTitle() == "title1").ToBeTruthy()
 		})
 		jasmine.ItAsync("LoadUrl", func(done func()) {
 
-			var w = electron.NewBrowserWindow(&map[string]interface{}{
+			w = electron.NewBrowserWindow(&map[string]interface{}{
 				"title": "title2",
 			})
 			w.LoadURL("file:///"+js.Global.Get("process").Call("cwd").String()+"/spec/page1.html", nil)
@@ -28,8 +29,11 @@ var bwTest = func() bool {
 			})
 
 		})
-		jasmine.AfterEachAsync(func(done func()) {
-			time.AfterFunc(time.Millisecond*10, done)
+		jasmine.AfterAllAsync(func(done func()) {
+			time.AfterFunc(time.Millisecond*100, func() {
+				w.Close()
+				done()
+			})
 		})
 	})
 	return true
