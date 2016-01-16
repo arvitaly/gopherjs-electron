@@ -1,15 +1,17 @@
 {
   "name": "gopherjs-electron",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "main.js",
   "scripts": {
     "start": "electron main.js",
-	"test": "electron test.js"
+    "test": "gopherjs build ./scripts/test.go -o ./spec/all-spec.js && electron scripts/test.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron-prebuilt": "^0.36.3"
-  }
+    "electron-prebuilt": "^0.36.4",
+    "jasmine": "^2.4.1"
+  },
+  "dependencies": {}
 }
