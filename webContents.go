@@ -37,17 +37,23 @@ func (w *_WebContents) ExecuteJavaScript(code string, userGesture *bool) {
 }
 func (w *_WebContents) OnDidFailLoad(listener func(event *js.Object, errorCode int, errorDescription string, validatedURL string)) {
 	w.Call("on", "did-fail-load", func(event *js.Object, errorCode *js.Object, errorDescription *js.Object, validatedURL *js.Object) {
-		listener(event, errorCode.Int(), errorDescription.String(), validatedURL.String())
+		go func() {
+			listener(event, errorCode.Int(), errorDescription.String(), validatedURL.String())
+		}()
 	})
 }
 func (w *_WebContents) OnWillNavigate(listener func(event *js.Object, url string)) {
 	w.Call("on", "will-navigate", func(event *js.Object, url *js.Object) {
-		listener(event, url.String())
+		go func() {
+			listener(event, url.String())
+		}()
 	})
 }
 
 func (w *_WebContents) OnDidStopLoading(listener func()) {
 	w.Call("on", "did-stop-loading", func() {
-		listener()
+		go func() {
+			listener()
+		}()
 	})
 }

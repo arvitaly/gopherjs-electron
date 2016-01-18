@@ -4,7 +4,7 @@ import "github.com/arvitaly/gopherjs-electron"
 
 import "github.com/arvitaly/gopherjs-jasmine"
 
-var tests = func() interface{} {
+var _ = jasmine.Run(func() {
 	jasmine.Describe("App", func() {
 		var app = electron.GetApp()
 		jasmine.ItAsync("OnReady", func(done func()) {
@@ -16,5 +16,4 @@ var tests = func() interface{} {
 			jasmine.Expect(app.GetAppPath() != "").ToBeTruthy()
 		})
 	})
-	return nil
-}()
+})
