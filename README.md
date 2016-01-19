@@ -6,10 +6,12 @@ Atom/Electron desktop apps with Go. Package use https://github.com/gopherjs/goph
 Install
 
 Package require electron-prebuilt npm-module
+
 	npm install -g electron-prebuilt
 
-go get github.com/arvitaly/gopherjs-electron
+	go get github.com/arvitaly/gopherjs-electron
 
 For tests used Jasmine (http://jasmine.github.io/) and adapter fo go https://github.com/arvitaly/gopherjs-jasmine
+
 	npm install
 	npm test
