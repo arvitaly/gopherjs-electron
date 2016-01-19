@@ -4,8 +4,8 @@ build:
     - go get
     - go build
     - go test
-	- go get github.com/arvitaly/gopherjs-jasmine
-	- go get -u github.com/gopherjs/gopherjs
-	- export DISPLAY=':99.0'
-	- Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-	- npm test --
+    - go get github.com/arvitaly/gopherjs-jasmine
+    - go get -u github.com/gopherjs/gopherjs
+    - export DISPLAY=':99.0'
+    - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+    - npm test --
