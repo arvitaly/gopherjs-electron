@@ -13,6 +13,7 @@ install:
   - nvm install stable
   - nvm use stable
   - npm install
+  - npm install electron-prebuilt -g
   - go get github.com/arvitaly/gopherjs-jasmine
   - go get -u github.com/gopherjs/gopherjs
   - export DISPLAY=':99.0'
