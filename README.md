@@ -10,6 +10,6 @@ Package require electron-prebuilt npm-module
 
 go get github.com/arvitaly/gopherjs-electron
 
-For test
-	npm install -g jasmine
+For tests used Jasmine (http://jasmine.github.io/) and adapter fo go https://github.com/arvitaly/gopherjs-jasmine
+	npm install
 	npm test
