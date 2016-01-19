@@ -1,5 +1,5 @@
 build:
-  image: docker-electron-go:latest
+  image: arvitaly/electron-go:latest
   commands:
     - go get
     - go build
