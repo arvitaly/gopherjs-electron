@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron-prebuilt": "^0.36.4",
     "jasmine": "^2.4.1"
   },
   "dependencies": {}
