@@ -29,6 +29,33 @@ var bwTest = func() bool {
 			})
 
 		})
+		jasmine.It("OnClose and OnClosed", func() {
+			var w = electron.NewBrowserWindow(nil)
+			var closec = make(chan bool)
+			var first = true
+			w.OnClose(func(event *js.Object) {
+				if first {
+					event.Call("preventDefault")
+				}
+				first = false
+				go func() {
+					closec <- true
+				}()
+
+			})
+			w.Close()
+			<-closec
+			var closed = make(chan bool)
+			w.OnClosed(func() {
+				go func() {
+					closed <- true
+				}()
+			})
+			w.Close()
+
+			<-closec
+			<-closed
+		})
 		jasmine.AfterAllAsync(func(done func()) {
 			time.AfterFunc(time.Millisecond*100, func() {
 				w.Close()
