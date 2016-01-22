@@ -11,6 +11,9 @@ type WebContents interface {
 	OnDidStopLoading(listener func())
 	OnDidFailLoad(listener func(event *js.Object, errorCode int, errorDescription string, validatedURL string))
 	OnWillNavigate(listener func(event *js.Object, url string))
+
+	//Emitted when the renderer process has crashed.
+	OnCrashed(listener func())
 }
 
 type _WebContents struct {
@@ -52,4 +55,9 @@ func (w *_WebContents) OnDidStopLoading(listener func()) {
 			listener()
 		}()
 	})
+}
+
+//TODO add test?
+func (w *_WebContents) OnCrashed(listener func()) {
+	w.Call("on", "crashed", listener)
 }
