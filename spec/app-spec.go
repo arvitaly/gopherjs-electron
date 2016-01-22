@@ -16,8 +16,12 @@ var _ = jasmine.Run(func() {
 			jasmine.Expect(app.GetAppPath() != "").ToBeTruthy()
 		})
 		jasmine.ItAsync("OnWillQuit", func(done func()) {
+			var firstTime = true
 			app.OnWillQuit(func(event *js.Object) {
-				event.Call("preventDefault")
+				if firstTime {
+					event.Call("preventDefault")
+				}
+				firstTime = false
 				done()
 			})
 			var br = electron.NewBrowserWindow(nil)
